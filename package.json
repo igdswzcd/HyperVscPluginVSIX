@@ -9,6 +9,9 @@
   "categories": [
     "Other"
   ],
+  "enabledApiProposals": [
+    "externalUriOpener"
+  ],
   "activationEvents": [
     "onCommand:hypr-cseb.helloWorld"
   ],
