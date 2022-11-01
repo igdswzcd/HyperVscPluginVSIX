@@ -1,48 +1,66 @@
 {
+  "enabledApiProposals": [
+    "externalUriOpener"
+  ],
   "name": "hypr-cseb",
   "displayName": "hypr-cseb",
   "description": "Customed simple embedded browser for hypers",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.72.0"
+    "vscode": "^1.70.0"
   },
   "categories": [
     "Other"
   ],
-  "enabledApiProposals": [
-    "externalUriOpener"
-  ],
   "activationEvents": [
-    "onCommand:hypr-cseb.helloWorld"
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "hypr-cseb.helloWorld",
-        "title": "Hello World"
+        "command": "hyprCseb.show",
+        "title": "Hello Browser"
       }
     ]
   },
+  "configuration": [
+    {
+      "title": "Hello Browser",
+      "properties": {
+        "hyprCseb.focusLockIndicator.enabled": {
+          "type": "boolean",
+          "default": true,
+          "title": "Focus Lock Indicator Enabled",
+          "description": "%configuration.focusLockIndicator.enabled.description%"
+        }
+      }
+    }
+  ],
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "lint": "eslint src --ext ts"
   },
   "devDependencies": {
-    "@types/vscode": "^1.72.0",
     "@types/glob": "^8.0.0",
     "@types/mocha": "^10.0.0",
     "@types/node": "16.x",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
+    "@vscode/test-electron": "^2.1.5",
     "eslint": "^8.24.0",
     "glob": "^8.0.3",
     "mocha": "^10.0.0",
     "typescript": "^4.8.4",
-    "@vscode/test-electron": "^2.1.5"
+    "vscode-dts": "^0.3.3"
+  },
+  "dependencies": {
+    "esbuild": "^0.15.12",
+    "gulp": "^4.0.2",
+    "vscode-codicons": "^0.0.17",
+    "vscode-nls": "^5.2.0"
   }
 }
