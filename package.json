@@ -5,16 +5,26 @@
   "name": "hypr-cseb",
   "displayName": "hypr-cseb",
   "description": "Customed simple embedded browser for hypers",
-  "version": "0.0.1",
+  "version": "2.5.0",
   "engines": {
     "vscode": "^1.70.0"
   },
+  "icon": "media/tuning.png",
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onCommand:hyprCseb.show",
+    "onCommand:hyprCseb.api.open",
+    "onOpenExternalUri:https",
+    "onWebviewPanel:hyprCseb.view"
   ],
+  "capabilities": {
+    "virtualWorkspaces": true,
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -22,40 +32,41 @@
         "command": "hyprCseb.show",
         "title": "Hello Browser"
       }
-    ]
-  },
-  "configuration": [
-    {
-      "title": "Hello Browser",
-      "properties": {
-        "hyprCseb.focusLockIndicator.enabled": {
-          "type": "boolean",
-          "default": true,
-          "title": "Focus Lock Indicator Enabled",
-          "description": "%configuration.focusLockIndicator.enabled.description%"
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "kunpengTuning",
+          "title": "kunpeng hyper tuner plugin",
+          "icon": "media/tuning.svg"
         }
-      }
+      ]
+    },
+    "views": {
+      "kunpengTuning": [
+        {
+          "id": "tuning-dependencies",
+          "name": "Dependencies"
+        },
+        {
+          "id": "tuning-outline",
+          "name": "Outline"
+        }
+      ]
     }
-  ],
+  },
   "scripts": {
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "build-preview": "node ./esbuild-preview"
   },
   "devDependencies": {
-    "@types/glob": "^8.0.0",
-    "@types/mocha": "^10.0.0",
     "@types/node": "16.x",
-    "@vscode/test-electron": "^2.1.5",
-    "glob": "^8.0.3",
-    "mocha": "^10.0.0",
     "typescript": "^4.8.4",
+    "esbuild": "^0.15.12",
     "vscode-dts": "^0.3.3"
   },
   "dependencies": {
-    "esbuild": "^0.15.12",
-    "gulp": "^4.0.2",
-    "vscode-codicons": "^0.0.17",
     "vscode-nls": "^5.2.0"
   }
 }

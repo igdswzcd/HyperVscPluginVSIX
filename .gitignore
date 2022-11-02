@@ -1,5 +1,4 @@
 out
-dist
+media/index.js
 node_modules
-.vscode-test/
 *.vsix

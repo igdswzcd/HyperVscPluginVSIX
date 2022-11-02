@@ -43,20 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand(showCommand, async (url?: string) => {
-      manager.show('https://90.90.77.142:8086');
-      // if (!url) {
-      //   url = await vscode.window.showInputBox({
-      //     placeHolder: localize(
-      //       'simpleBrowser.show.placeholder',
-      //       'https://example.com'
-      //     ),
-      //     prompt: localize('simpleBrowser.show.prompt', 'Enter url to visit'),
-      //   });
-      // }
-
-      // if (url) {
-      //   manager.show(url);
-      // }
+      manager.show('https://127.0.0.1:8086');
     })
   );
 

@@ -79,21 +79,6 @@ export class HyprCsebView extends Disposable {
       })
     );
 
-    // this._register(
-    //   vscode.workspace.onDidChangeConfiguration((e) => {
-    //     if (e.affectsConfiguration('hyprCseb.focusLockIndicator.enabled')) {
-    //       const configuration = vscode.workspace.getConfiguration('hyprCseb');
-    //       this._webviewPanel.webview.postMessage({
-    //         type: 'didChangeFocusLockIndicatorEnabled',
-    //         focusLockEnabled: configuration.get<boolean>(
-    //           'focusLockIndicator.enabled',
-    //           true
-    //         ),
-    //       });
-    //     }
-    //   })
-    // );
-
     this.show(url);
   }
 
@@ -108,16 +93,12 @@ export class HyprCsebView extends Disposable {
   }
 
   private getHtml(url: string) {
-    // const configuration = vscode.workspace.getConfiguration('hyprCseb');
-    const configuration = vscode.workspace.getConfiguration('hyprCseb');
-
     const nonce = getNonce();
 
     const mainJs = this.extensionResourceUrl('media', 'index.js');
     const mainCss = this.extensionResourceUrl('media', 'main.css');
-    const codiconsUri = this.extensionResourceUrl('media', 'codicon.css');
 
-    return /* html */ `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 			<html>
 			<head>
 				<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
@@ -132,20 +113,15 @@ export class HyprCsebView extends Disposable {
           <meta id="simple-browser-settings" data-settings="${escapeAttribute(
             JSON.stringify({
               url: url,
-              focusLockEnabled: configuration.get<boolean>(
-                'focusLockIndicator.enabled',
-                true
-              ),
             })
           )}">
               <link rel="stylesheet" type="text/css" href="${mainCss}">
-              <link rel="stylesheet" type="text/css" href="${codiconsUri}">
             </head>
 			<body>
 				<header class="header">
 				</header>
 				<div class="content">
-					<iframe sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
+					<iframe sandbox="allow-scripts allow-forms allow-same-origin allow-downloads"></iframe>
 				</div>
 
 				<script src="${mainJs}" nonce="${nonce}"></script>
