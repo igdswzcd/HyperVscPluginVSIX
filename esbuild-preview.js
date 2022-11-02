@@ -16,10 +16,8 @@ const outputRootIndex = args.indexOf('--outputRoot');
 if (outputRootIndex >= 0) {
   outputRoot = args[outputRootIndex + 1];
 }
-
-const srcDir = path.join(__dirname, 'preview-src');
+const srcDir = path.join(__dirname, 'src', 'preview-src');
 const outDir = path.join(outputRoot, 'media');
-
 async function build() {
   fs.copyFileSync(
     path.join(
@@ -31,7 +29,6 @@ async function build() {
     ),
     path.join(outDir, 'codicon.css')
   );
-
   fs.copyFileSync(
     path.join(
       __dirname,
@@ -42,7 +39,6 @@ async function build() {
     ),
     path.join(outDir, 'codicon.ttf')
   );
-
   await esbuild.build({
     entryPoints: [path.join(srcDir, 'index.ts')],
     bundle: true,
@@ -54,9 +50,7 @@ async function build() {
     target: ['es2020'],
   });
 }
-
 build().catch(() => process.exit(1));
-
 if (isWatch) {
   const watcher = require('@parcel/watcher');
   watcher.subscribe(srcDir, () => {

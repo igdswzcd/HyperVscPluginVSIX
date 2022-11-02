@@ -31,7 +31,6 @@ const openerId = 'hyprCseb.open';
 
 export function activate(context: vscode.ExtensionContext) {
   const manager = new HyprCsebManager(context.extensionUri);
-  console.log(context.extensionUri);
   context.subscriptions.push(manager);
 
   context.subscriptions.push(
